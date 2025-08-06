@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+    <script type="module" src="./src/js/index.js"></script>
+</head>
+<body>
+    <aside id="grid-aside">
+        <section>
+            <h1>Grid</h1>
+        </section>
+
+        <div class="button-row">
+            <button id="clear-on-button">Clear on</button>
+            <button id="clear-off-button">Clear off</button>
+        </div>
+
+        <section>
+            <h2>Size</h2>
+            <div class="range-labels">
+                <div>1</div>
+                <div>500</div>
+            </div>
+            <input id="size-range" type="range" min="1" max="500" value="50" step="1">
+        </section>
+
+        <section>
+            <h2>Update type</h2>
+            <div>
+                <label>
+                    Orthogonal
+                    <input type="radio" name="update-type" value="orthogonal">
+                </label>
+                <label>
+                    Octilinear
+                    <input type="radio" name="update-type" value="octilinear" checked>
+                </label>
+            </div>
+        </section>
+
+        <section>
+            <h2>Toggle rules</h2>
+            <div id="rules-grid">
+                <div></div>
+                <div class="number-label grid-label">0</div>
+                <div class="number-label grid-label">1</div>
+                <div class="number-label grid-label">2</div>
+                <div class="number-label grid-label">3</div>
+                <div class="number-label grid-label">4</div>
+                <div class="number-label grid-label">5</div>
+                <div class="number-label grid-label">6</div>
+                <div class="number-label grid-label">7</div>
+                <div class="number-label grid-label">8</div>
+                <div class="grid-label state-label">On</div>
+                <input type="checkbox" class="on-checkbox" value="0" checked>
+                <input type="checkbox" class="on-checkbox" value="1" checked>
+                <input type="checkbox" class="on-checkbox" value="2">
+                <input type="checkbox" class="on-checkbox" value="3">
+                <input type="checkbox" class="on-checkbox" value="4" checked>
+                <input type="checkbox" class="on-checkbox" value="5" checked>
+                <input type="checkbox" class="on-checkbox" value="6" checked>
+                <input type="checkbox" class="on-checkbox" value="7" checked>
+                <input type="checkbox" class="on-checkbox" value="8" checked>
+                <div class="grid-label state-label">Off</div>
+                <input type="checkbox" class="off-checkbox" value="0">
+                <input type="checkbox" class="off-checkbox" value="1">
+                <input type="checkbox" class="off-checkbox" value="2">
+                <input type="checkbox" class="off-checkbox" value="3" checked>
+                <input type="checkbox" class="off-checkbox" value="4">
+                <input type="checkbox" class="off-checkbox" value="5">
+                <input type="checkbox" class="off-checkbox" value="6">
+                <input type="checkbox" class="off-checkbox" value="7">
+                <input type="checkbox" class="off-checkbox" value="8">
+            </div>
+            <button id="randomize-rules-button">Randomize rules</button>
+        </section>
+
+        <section>
+            <h2>Randomize</h2>
+            <div class="range-labels">
+                <div>0% on</div>
+                <div>100% on</div>
+            </div>
+            <input id="randomization-range" type="range" min="0" max="1" value="0.5" step="0.01">
+            <button id="randomize-cells-button">Randomize cells</button>
+        </section>
+
+        <section>
+            <h2>Update</h2>
+            
+            <div>Iterations</div>
+            <div class="range-labels">
+                <div>1</div>
+                <div>100</div>
+            </div>
+            <input id="iterations-range" type="range" min="1" max="100" value="1">
+            
+            <div>Speed</div>
+            <div class="range-labels">
+                <div>Slow</div>
+                <div>Fast</div>
+            </div>
+            <input id="speed-range" type="range" min="1" max="100" value="20">
+
+            <div class="button-row">
+                <button id="step-button">Step</button>
+                <button id="play-button">Play</button>
+            </div>
+        </section>
+
+    </aside>
+    <canvas id="grid-canvas"></canvas>
+    <aside id="render-aside">
+        <section>
+            <h1>Render</h1>
+        </section>
+
+        <section>
+            <h2>Colors</h2>
+        </section>
+
+    </aside>
+</body>
+</html>
