@@ -14,6 +14,8 @@ export default class Manager {
     private canvas = document.getElementById('grid-canvas') as HTMLCanvasElement
     private playButton = document.getElementById('play-button') as HTMLButtonElement
     private gridCanvas = document.createElement('canvas') as HTMLCanvasElement
+    private onColorInput = document.getElementById('on-color-input') as HTMLInputElement
+    private offColorInput = document.getElementById('off-color-input') as HTMLInputElement
 
     private grid: Grid
     private leftDown = false
@@ -31,6 +33,8 @@ export default class Manager {
         document.getElementById('step-button')!.addEventListener('click', () => { this.step() })
         this.playButton.addEventListener('click', () => { this.togglePlay() })
         this.speedRange.addEventListener('change', () => { this.speedChanged() })
+        this.onColorInput.addEventListener('input', () => { this.render() })
+        this.offColorInput.addEventListener('input', () => { this.render() })
 
         this.canvas.addEventListener('mousedown', e => { this.mouseDown(e) })
         this.canvas.addEventListener('mousemove', e => { this.mouseMove(e) })
@@ -269,6 +273,14 @@ export default class Manager {
         ctx.stroke()
     }
 
+    colorInt(hexString: string) {
+        const rgb = parseInt(hexString.slice(1), 16)
+        const r = rgb >> 16
+        const g = (rgb >> 8) & 0xff
+        const b = rgb & 0xff
+        return 0xff << 24 | b << 16 | g << 8 | r
+    }
+
     renderGrid(rect: Rect, ctx: CanvasRenderingContext2D) {
         ctx.imageSmoothingEnabled = false
         const size = this.grid.size
@@ -277,8 +289,11 @@ export default class Manager {
         const imageData = gridCtx.createImageData(size, size)
         const buffer = new Uint32Array(imageData.data.buffer)
         const grid = this.grid.grid
+        const onColor = this.colorInt(this.onColorInput.value)
+        const offColor = this.colorInt(this.offColorInput.value)
+
         for (let i = 0; i < grid.length; i++) {
-            buffer[i] = grid[i] * 0xffffffff
+            buffer[i] = grid[i] === 0 ? offColor : onColor
         }
         gridCtx.putImageData(imageData, 0, 0)
         ctx.drawImage(this.gridCanvas, rect.x, rect.y, rect.w, rect.h)
